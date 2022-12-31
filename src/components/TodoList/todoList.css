@@ -1,0 +1,43 @@
+.list{
+    padding: 0.5em 2em 2em 2em;
+    font-size: 1.3em;
+}
+.list > * {
+    padding: 10px;
+}
+
+.listTitle{
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+}
+
+.todoRow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.todoItem{
+    max-width: 250px;
+    word-wrap: break-word;
+}
+
+.controls{
+    display: flex;
+}
+
+.btn{
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+@media screen and (max-width:600px){
+    .list{
+        padding: 0.5em 1em 2em 1em;
+    }
+    .todoItem{
+        max-width: 80px;
+    }
+}
