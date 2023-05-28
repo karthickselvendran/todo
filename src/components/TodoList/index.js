@@ -5,8 +5,8 @@ import "./todoList.css";
 
 const TodoList = ({
   todoList = [],
-  deleteTodoItem = {},
-  editTodoItem = {},
+  deleteTodoItem = () => {},
+  editTodoItem = () => {},
 }) => {
   return (
     <div className="list">
@@ -14,7 +14,7 @@ const TodoList = ({
       {todoList?.length
         ? todoList.map((data, i) => {
             return (
-              <div className="todoRow">
+              <div className="todoRow" key={i}>
                 <div className="todoItemRow mr5">{`${i + 1}.`}</div>
                 <div className="todoItem">{`${data}`}</div>
                 <div className="controls">
