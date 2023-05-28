@@ -33,9 +33,12 @@ function App() {
       setTodoList((prevData) => [...prevData, todo.trim()]);
       toast.success("Todo added to list");
     } else {
-      let temp = [...todoList];
-      temp.splice(editIndex, 1, todo.trim());
-      setTodoList(temp);
+      setTodoList((prevTodoList) =>
+        prevTodoList.map((item, i) => (editIndex === i ? todo : item))
+      );
+      // let temp = [...todoList];
+      // temp.splice(editIndex, 1, todo.trim());
+      // setTodoList(temp);
       setEditIndex("");
       toast.success("Todo updated to list");
     }
