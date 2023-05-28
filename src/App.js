@@ -49,9 +49,14 @@ function App() {
   };
 
   const deleteTodoItem = (deleteIndex) => {
-    let temp = [...todoList];
-    temp.splice(deleteIndex, 1);
-    setTodoList(temp);
+    //  Method 1 - optimized way
+    setTodoList((prevTodoList) =>
+      prevTodoList.filter((_, i) => i !== deleteIndex)
+    );
+    // Method 2
+    // let temp = [...todoList];
+    // temp.splice(deleteIndex, 1);
+    // setTodoList(temp);
   };
 
   console.log("todo  :: ", todo);
