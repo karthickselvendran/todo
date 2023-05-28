@@ -1,16 +1,27 @@
-import React, { useState } from "react";
-import { ToastContainer } from "react-toastify";
+import React, { useEffect, useState, useRef } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
 import TodoForm from "./components/TodoForm";
 import Header from "./components/Header";
 import TodoList from "./components/TodoList";
 import "./App.css";
 
 function App() {
+  const inputRef = useRef();
   const [todo, setTodo] = useState("");
   const [editIndex, setEditIndex] = useState("");
   const [todoList, setTodoList] = useState([]);
+
+  useEffect(() => {
+    const storedTodoList = localStorage.getItem("todoList");
+    if (storedTodoList) {
+      setTodoList(JSON.parse(storedTodoList));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+  }, [todoList]);
 
   const addToTodoList = (e) => {
     e.preventDefault();
@@ -31,12 +42,13 @@ function App() {
     setTodo("");
   };
 
-  const editBmiDetails = (editIndex, editValue) => {
+  const editTodoItem = (editIndex, editValue) => {
     setEditIndex(editIndex);
     setTodo(editValue);
+    inputRef.current.focusInput();
   };
 
-  const deleteBmiDetails = (deleteIndex) => {
+  const deleteTodoItem = (deleteIndex) => {
     let temp = [...todoList];
     temp.splice(deleteIndex, 1);
     setTodoList(temp);
@@ -57,6 +69,7 @@ function App() {
         </p>
         <div className="addContactCard">
           <TodoForm
+            ref={inputRef}
             todo={todo}
             setTodo={setTodo}
             addToTodoList={addToTodoList}
@@ -65,8 +78,8 @@ function App() {
           />
           <TodoList
             todoList={todoList}
-            deleteBmiDetails={deleteBmiDetails}
-            editBmiDetails={editBmiDetails}
+            deleteTodoItem={deleteTodoItem}
+            editTodoItem={editTodoItem}
           />
         </div>
       </div>

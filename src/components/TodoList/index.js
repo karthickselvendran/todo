@@ -4,9 +4,9 @@ import { AiFillDelete } from "react-icons/ai";
 import "./todoList.css";
 
 const TodoList = ({
-  todoList = {},
-  deleteBmiDetails = {},
-  editBmiDetails = {},
+  todoList = [],
+  deleteTodoItem = {},
+  editTodoItem = {},
 }) => {
   return (
     <div className="list">
@@ -20,11 +20,11 @@ const TodoList = ({
                 <div className="controls">
                   <BiEdit
                     className="btn"
-                    onClick={() => editBmiDetails(i, data)}
+                    onClick={() => editTodoItem(i, data)}
                   />
                   <AiFillDelete
-                    className="btn "
-                    onClick={() => deleteBmiDetails(i)}
+                    className="btn"
+                    onClick={() => deleteTodoItem(i)}
                   />
                 </div>
               </div>
